@@ -197,7 +197,7 @@ class CoinsManager {
         $max = null;
         $coins = $this->coins;
         for ($k = 0; $k < count($coins); $k++) {
-            if (($coins[$k] + $sum <= $amount) && (!$this->isLimited() || $this->checkQuantity($coins[$k]))) {
+            if (bccomp($coins[$k] + $sum, $amount, 2) <= 0 && (!$this->isLimited() || $this->checkQuantity($coins[$k]))) {
                 $max = $coins[$k];
                 break;
             }
